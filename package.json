@@ -1,0 +1,12 @@
+{
+  "name": "D3-Test",
+  "version": "0.0.1",
+  "description": "D3-Test",
+  "main": ".jsserver",
+  "repository": "",
+  "license": "Proprietary",
+  "private": true,
+  "dependencies": {
+    "express": "^4.12.2"
+  }
+}
