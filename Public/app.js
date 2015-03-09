@@ -6,7 +6,16 @@ var parseData = function(dataRequest) {
       choice = dataOptions[i];
     }
   }
- //make http request
 };
 
-var
+
+var onStart = function() { //load initial data
+
+};
+
+var requestData = function() { //request specific data
+
+};
+
+
+

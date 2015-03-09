@@ -12,14 +12,22 @@ var fakeData = [
 
 
 /*************************************
+Data Specifics Config
+*************************************/
+var currentData = {
+  data: undefined,
+  xLabel: '',
+  yLabel: '',
+  xUnit: '',
+  yUnit: '',
+  xVar: '',
+  yVar: '',
+  colorVar: ''
+};
+
+/*************************************
 D3 Config
 *************************************/
-var margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
-
-
-
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
@@ -70,11 +78,12 @@ yScale.domain([d3.min(fakeData, yValue)-1, d3.max(fakeData, yValue)+1]);
 /*************************************
 Data Config
 *************************************/
+var renderFakeData = function() {
   svg.selectAll(".dot")
       .data(fakeData)
     .enter().append("circle")
       .attr("class", "dot")
-      .attr("r", function(d) {return 0.1*d.waterUse;})
+      .attr("r", function(d) {return 0.1 * d.waterUse;})
       .attr("cx", xMap)
       .attr("cy", yMap)
       .style("fill", function(d) { return color(cValue(d));})
@@ -92,7 +101,45 @@ Data Config
                .duration(500)
                .style("opacity", 0);
       });
+};
 
+var renderTempData = function(fileName, x, y, xLabel, yLabel, colorVar) {
+    d3.csv(fileName, function(error, csv) {
+      currentData.data = csv;
+      currentData.xVar = x;
+      currentData.yVar = y;
+      csv.forEach(function(dataPoint) { //ensure numeric
+        dataPoint[x] = +dataPoint[x]
+        dataPoint[y] = +dataPoint[y];
+      });
+
+      xScale.domain([d3.min(csv, xValue) -1, d3.max(csv, xValue) +1]);
+      yScale.domain([d3.min(csv, yValue) -1], d3.max(csv, yValue) +1);
+
+      svg.selectAll(".dot")
+          .data(csv)
+        .enter().append("circle")
+          .attr("class", "dot")
+          .attr("r", 3.5)
+          .attr("cx", xMap)
+          .attr("cy", yMap)
+          .style("fill", function(d) { return color(cValue(d));})
+          .on("mouseover", function(d) {
+              tooltip.transition()
+                   .duration(200)
+                   .style("opacity", .9);
+              tooltip.html(d['Cereal Name'] + "<br/> (" + xValue(d)
+              + ", " + yValue(d) + ")")
+                   .style("left", (d3.event.pageX + 5) + "px")
+                   .style("top", (d3.event.pageY - 28) + "px");
+          })
+          .on('mouseout', function(d) {
+              tooltip.transition()
+                   .duration(500)
+                   .style('opacity', 0);
+          });
+  });
+};
 /*************************************
 Legend
 *************************************/
