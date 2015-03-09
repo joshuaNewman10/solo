@@ -3,11 +3,13 @@
 }
 
 .chart {
-  height: 500px;
+  margin-top: 200px;
+  height: 1000px;
 }
 
 .control {
-  height: 500px;
+  margin-top: 200px;
+  height: 1000px;
 }
 
 .tooltip {
