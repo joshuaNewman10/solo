@@ -18,27 +18,40 @@ Once the project moves into development, the press release can be used as a touc
  
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
+  California Water Use Visualization Through the Drought
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  Californian residents who want to help conserve water by doing more than taking shorter showers but lack information. 
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  Our product provides a simple, intuitive way to interact with our water use dataset and learn how their daily decisions and political decisions impact the drought.
 
 ## Problem ##
   > Describe the problem your product solves.
+  There is a lack of information about water use in California. Most people only know that agriculture is responsible for the bulk of the usage.
+  Likewise the only advice usually given is to take shorter showers and stop watering lawns.
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
+  Our product provides a suite of simple data visualization tools to inform users about the compelex reality of water use. 
+  This allows users to be more informed politically and in their daily lives.
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
+  We provide easy to use visualization tools to make Californian citizens informed and empowered when it comes to our drought.
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
+  Simply visit our website and explore by water use category, or time or county.
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  I never realized how much more water my county was using over the past five years. I've now become much more involved politically
+  as a result.
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
+  After using our water use visualization tools you will be informed about where the water goes.
+  The next step for you is to make changes in your daily life and become politically involved in the issue
