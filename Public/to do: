@@ -1,0 +1,6 @@
+to do:
+1) Set up scaffolding for requests to server
+2) Set up scaffolding on server for handling requests
+3) Set up scaffolding on server for interacting with database
+4) Set up scaffolding for database
+5) Set up reading in a csv file

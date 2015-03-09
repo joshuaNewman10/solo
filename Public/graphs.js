@@ -59,9 +59,6 @@ var tooltip = d3.select('.chart')
 
 
 
-/*************************************
-Data Config
-*************************************/
 
 /*************************************
 Axes Config
@@ -69,7 +66,10 @@ Axes Config
 xScale.domain([d3.min(fakeData, xValue)-1, d3.max(fakeData, xValue)+1]);
 yScale.domain([d3.min(fakeData, yValue)-1, d3.max(fakeData, yValue)+1]);
 
-  // draw dots
+
+/*************************************
+Data Config
+*************************************/
   svg.selectAll(".dot")
       .data(fakeData)
     .enter().append("circle")
@@ -93,9 +93,11 @@ yScale.domain([d3.min(fakeData, yValue)-1, d3.max(fakeData, yValue)+1]);
                .style("opacity", 0);
       });
 
-  // draw legend
+/*************************************
+Legend
+*************************************/
   var legend = svg.selectAll(".legend")
-      .data(color.domain())
+      .data(fakeData)
     .enter().append("g")
       .attr("class", "legend")
       .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
@@ -113,9 +115,11 @@ yScale.domain([d3.min(fakeData, yValue)-1, d3.max(fakeData, yValue)+1]);
       .attr("y", 9)
       .attr("dy", ".35em")
       .style("text-anchor", "end")
-      .text(function(d) { return d;});
+      .text(function(d) { return d.county + ' ' + d.year;});
 
-// x-axis
+/*************************************
+Axes
+*************************************/
   svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
@@ -125,7 +129,7 @@ yScale.domain([d3.min(fakeData, yValue)-1, d3.max(fakeData, yValue)+1]);
       .attr("x", width)
       .attr("y", -6)
       .style("text-anchor", "end")
-      .text("Calories");
+      .text("Population");
 
   // y-axis
   svg.append("g")
@@ -137,4 +141,4 @@ yScale.domain([d3.min(fakeData, yValue)-1, d3.max(fakeData, yValue)+1]);
       .attr("y", 6)
       .attr("dy", ".71em")
       .style("text-anchor", "end")
-      .text("Protein (g)");
+      .text("Water Use");

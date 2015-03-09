@@ -2,17 +2,18 @@
   border: 2px solid black;
 }
 
-/*.chart {
+.chart {
   padding-top: 50px;
   margin-top: 50px;
-  height: 1000px;
 }
 
-.control {
-  margin-top: 50px;
-  padding-top: 50px;
-  height: 1000px;
-}*/
+.controls {
+  display: absolute;
+
+}
+.controls li {
+  display: inline-block;
+}
 
 .tooltip {
   position: absolute;
