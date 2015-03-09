@@ -21,7 +21,7 @@ var yValue = function(d) { return d["Protein (g)"];}, // data -> value
 //   .enter().append("svg:line");
 // ticks
 //   .attr("x1",0).attr("x2",5)
-//   .attr("y1",y).attr("y2",y) // short and simple. 
+//   .attr("y1",y).attr("y2",y) // short and simple.
 //   .attr("stroke","black");
 // setup fill color
 var cValue = function(d) { return d.Manufacturer;},
@@ -90,7 +90,7 @@ d3.csv("Cereal.csv", function(error, data) {
           tooltip.transition()
                .duration(200)
                .style("opacity", .9);
-          tooltip.html(d["Cereal Name"] + "<br/> (" + xValue(d) 
+          tooltip.html(d["Cereal Name"] + "<br/> (" + xValue(d)
           + ", " + yValue(d) + ")")
                .style("left", (d3.event.pageX + 5) + "px")
                .style("top", (d3.event.pageY - 28) + "px");
