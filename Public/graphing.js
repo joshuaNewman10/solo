@@ -1,30 +1,31 @@
+var fakeData = [
+  {county: 'San Francisco', year: 2000, waterUse: 200, population: 10},
+  {county: 'San Francisco', year: 2005, waterUse: 217, population: 20},
+  {county: 'Los Angeles', year: 2000, waterUse: 222, population: 5},
+  {county: 'Los Angeles', year: 2005, waterUse: 300, population: 8},
+  {county: 'Sacramento', year: 2000, waterUse: 476, population: 17},
+  {county: 'Sacramento', year: 2005, waterUse: 520, population: 26}
+];
+
+
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = 960 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
-var xValue = function(d) { return d.Calories;}, // data -> value
+var xValue = function(d) { return d.population;}, // data -> value
     xScale = d3.scale.linear().range([0, width]), // value -> display
     xMap = function(d) { return xScale(xValue(d));}, // data -> display
     xAxis = d3.svg.axis().scale(xScale).orient("bottom");
 
 // setup y
-var yValue = function(d) { return d["Protein (g)"];}, // data -> value
+var yValue = function(d) { return d.waterUse;}, // data -> value
     yScale = d3.scale.linear().range([height, 0]), // value -> display
     yMap = function(d) { return yScale(yValue(d));}, // data -> display
     yAxis = d3.svg.axis().scale(yScale).orient("left");
 
 
-// var y=d3.scale.linear([20,80]).range([0,120]);
-// ...
-// var ticks=axis.selectAll("line")
-//   .data(y.ticks(4)) // 20, 40, 60 and 80
-//   .enter().append("svg:line");
-// ticks
-//   .attr("x1",0).attr("x2",5)
-//   .attr("y1",y).attr("y2",y) // short and simple.
-//   .attr("stroke","black");
 // setup fill color
-var cValue = function(d) { return d.Manufacturer;},
+var cValue = function(d) { return d.year;},
     color = d3.scale.category10();
 
 // var ramp=d3.scale.linear().domain([0,100]).range(["red","blue"]);
@@ -40,18 +41,13 @@ var tooltip = d3.select("body").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
 
-d3.csv("Cereal.csv", function(error, data) {
 
   // change string (from CSV) into number format
-  data.forEach(function(d) {
-    d.Calories = +d.Calories;
-    d["Protein (g)"] = +d["Protein (g)"];
-//    console.log(d);
-  });
+
 
   // don't want dots overlapping axis, so add in buffer to data domain
-  xScale.domain([d3.min(data, xValue)-1, d3.max(data, xValue)+1]);
-  yScale.domain([d3.min(data, yValue)-1, d3.max(data, yValue)+1]);
+  xScale.domain([d3.min(fakeData, xValue)-1, d3.max(fakeData, xValue)+1]);
+  yScale.domain([d3.min(fakeData, yValue)-1, d3.max(fakeData, yValue)+1]);
 
   // x-axis
   svg.append("g")
@@ -79,7 +75,7 @@ d3.csv("Cereal.csv", function(error, data) {
 
   // draw dots
   svg.selectAll(".dot")
-      .data(data)
+      .data(fakeData)
     .enter().append("circle")
       .attr("class", "dot")
       .attr("r", 3.5)
@@ -136,4 +132,3 @@ d3.csv("Cereal.csv", function(error, data) {
 
 
 svg.call(tip);
-});
