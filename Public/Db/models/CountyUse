@@ -1,0 +1,12 @@
+var db = require('../config');
+var mongoose = require('mongoose');
+
+var countySchema = mongoose.Schema({
+  totalPop: Number,
+  county: String,
+  perCapitaUse: Number
+});
+
+var CountyData = mongoose.model('County', countySchema);
+
+module.exports(CountyData);

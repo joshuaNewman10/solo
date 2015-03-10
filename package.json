@@ -7,6 +7,10 @@
   "license": "Proprietary",
   "private": true,
   "dependencies": {
-    "express": "^4.12.2"
+    "bluebird": "^2.9.13",
+    "express": "^4.12.2",
+    "mongoose": "^3.8.24",
+    "request": "^2.53.0",
+    "ya-csv": "^0.9.4"
   }
 }

@@ -1,0 +1,13 @@
+var db = require('../config');
+var mongoose = require('mongoose');
+
+var TimeCountySchema = mongoose.Schema({
+  totalPop: Number,
+  county: String,
+  perCapitaUse: Number,
+  year: Number
+});
+
+var TimeCountyData = mongoose.model('TimeCounty', TimeCountySchema);
+
+module.exports(TimeCountyData);

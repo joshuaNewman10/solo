@@ -242,6 +242,10 @@ var renderCSVData = function(fileName, x, y, xLabel, yLabel, colorVar, legendTex
           updateAxes();
   });
 
+var renderDbData = function() {
+
+};
+
 };
 
 renderFakeData();

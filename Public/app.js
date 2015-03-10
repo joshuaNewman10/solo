@@ -8,13 +8,10 @@ var parseData = function(dataRequest) {
   }
 };
 
-
-var onStart = function() { //load initial data
-
-};
-
-var requestData = function() { //request specific data
-
+var requestData = function(dataId) { //request specific data
+  $.get('dataId', function(data) {
+    renderDbData(data, dataId);
+  });
 };
 
 
