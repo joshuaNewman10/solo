@@ -120,8 +120,8 @@ var renderNewCSVData = function(fileName, x, y, xLabel, yLabel, colorVar, toolTe
         .enter().append("circle")
           .attr("class", "dot")
           .attr("r", rMap)
-          .attr("cx", xMap)
-          .attr("cy", yMap)
+          .attr("cx", 0)
+          .attr("cy", 400)
           .style("fill", function(d) { return color(cValue(d));})
           .on("mouseover", function(d) {
               tooltip.transition()
@@ -136,6 +136,10 @@ var renderNewCSVData = function(fileName, x, y, xLabel, yLabel, colorVar, toolTe
                    .duration(500)
                    .style('opacity', 0);
           });
+          svg.selectAll(".dot").transition().duration(1000)
+                      .attr("cx", xMap)
+                      .attr("cy", yMap);
+
   });
 };
 
