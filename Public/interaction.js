@@ -12,7 +12,8 @@ var parseDataRequest = function(dataRequest) {
     'Industry': 'Public Supply deliveries to industrial, in Mgal/d',
     'Per Capita': 'Public Supply per capita use, in gallons/person/day'
   };
-  var choice = 'County';
+
+  var choice = 'County'; //default
   var yVar = 'County';
   var choices = Object.keys(dataOptions);
   for(var i=0; i<choices.length; i++) {
