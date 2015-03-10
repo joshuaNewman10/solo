@@ -82,7 +82,10 @@ var renderNewCSVData = function(fileName, x, y, xLabel, yLabel, colorVar, toolTe
 
       //setup colors
       var cValue = function(d) { return d[current.colorVar];};
-      var color = d3.scale.category10();
+      // var color = d3.scale.category10();
+      var color = d3.scale.linear()
+          .domain([minRadius, maxRadius/2, maxRadius])
+          .range(["LightBlue", "DarkBlue", "Red"]);
 
       var tooltip = d3.select('body')
                         .append('div')
