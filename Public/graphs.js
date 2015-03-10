@@ -184,7 +184,7 @@ var renderFakeData = function() {
       updateAxes();
 };
 
-var renderTempData = function(fileName, x, y, xLabel, yLabel, colorVar, legendText, xUnit, yUnit) {
+var renderCSVData = function(fileName, x, y, xLabel, yLabel, colorVar, legendText, xUnit, yUnit) {
     d3.csv(fileName, function(error, csv) {
 
       currentData.data = csv;
@@ -244,7 +244,6 @@ var renderTempData = function(fileName, x, y, xLabel, yLabel, colorVar, legendTe
 
 };
 
-// renderFakeData();
-// renderTempData(fileName, x, y, xLabel, yLabel, colorVar, legendText, xUnit, yUnit);
-renderTempData('Cereal.csv', 'Calories', 'Protein (g)', 'Calories', 'Protein (g)', 'Sodium', 'Food Name', 'g', 'kcal');
-
+renderFakeData();
+// renderCSVData('Cereal.csv', 'Calories', 'Protein (g)', 'Calories', 'Protein (g)', 'Sodium', 'Food Name', 'g', 'kcal');
+renderCSVData('waterUseCSV.csv',"Total Population total population of area, in thousands","Public Supply population served by groundwater, in thousands", "Total Population total population of area, in thousands","Public Supply population served by groundwater, in thousands","Public Supply total population served, in thousands" );
