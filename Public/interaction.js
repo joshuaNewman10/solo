@@ -27,7 +27,8 @@ $(document).ready(function() {
     var x = 0;
     var y = 0;
     if( radius > 15 ) {
-      console.log('load county data');
+      $('.Loading').show();
+      loadDataWithoutLA();
     } else {
       console.log('do something else');
     }
