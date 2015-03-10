@@ -5,7 +5,7 @@ var CerealSchema = mongoose.Schema({
   name: String,
   manufacturer: String,
   calories: String,
-  protein; String,
+  protein: String,
   fat: String,
   sodium: String,
   fiber: String,
@@ -13,6 +13,5 @@ var CerealSchema = mongoose.Schema({
   sugars: String
 });
 
-var CerealData = mongoose.model('CerealData', CerealSchema);
+var CerealModel = mongoose.model('CerealData', CerealSchema);
 
-module.exports(TimeCountyData);

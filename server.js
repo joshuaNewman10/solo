@@ -3,6 +3,8 @@ var request = require('request');
 var mongoose = require('mongoose');
 var promise = require('bluebird');
 var csv = require('fast-csv');
+var db = require('./Public/Db/config.js');
+
 
 var app = express();
 app.use(express.static(__dirname + '/public'));
@@ -13,6 +15,23 @@ app.listen(8000);
 var dataStore = {
 };
 
+var storeCerealData = function(data, cb) {
+  data.forEach(function(row) {
+   var newCereal = new Cereal(
+                              {'Cereal Name': row['Cereal Name'], 
+                              'Manufacturer': row['Manufacturer'], 
+                              'Calories': row['Calories'], 
+                              'Protein (g)': row['Protein (g)'], 
+                              'Fat': row['Fat'], 
+                              'Sodium': row['Sodium'], 
+                              'Carbs': row['Carbs'], 
+                              'Sugars': row['Sugars']});
+                              });
+};
+
+var storeWaterUseData = function() {
+
+};
 
 var timeout = function (operation) { //clean row of data at timeout intervals
     setTimeout(function () {
@@ -25,10 +44,11 @@ var cleanData = function (data, cb) {
   data.forEach(function(row, i) {
     for(var prop in row) {
       if( row[prop] === '-') {
-        console.log(row[prop], prop);
+        row[prop] = null;
       }
     }
   });
+  cb(data);
 };
 
 var parseData = function (data, path, cb) {
@@ -54,8 +74,17 @@ var importData = function (path, cb) {
     csvData.push(data);
   })
   .on('end', function() {
-    console.log('done reading csv data');
     cb(csvData, path);
+  });
+};
+
+var getData = function(path, cb) {
+  importData(path, function(csvData, path) {
+    parseData(csvData, path, function(data) {
+      cleanData(data, function(data) {
+        cb(path);
+      });
+    });
   });
 };
 
@@ -72,29 +101,20 @@ app.get('TimeCounty', function(req, resp) {
 });
 
 
-importData('Public/Cereal.csv', function(csvData, path) { //hello CB hell
-  parseData(csvData, path, function(data) {
-    cleanData(data, function() {
-      console.log('cleaned data!');
-    });
-  });
-  console.log('imported, parsed, cleaned data');
-});
-importData('Public/waterUse.csv', function(csvData, path) { //hello CB hell
-  parseData(csvData, path, function(data) {
-    cleanData(data, function() {
-      console.log('cleaned data!');
-    });
-  });
-  console.log('imported, parsed, cleaned data');
+getData('Public/Cereal.csv', function(path) {
+  storeCerealData(dataStore[path]);
 });
 
-
-
-
-
-
-
+// importData('Public/waterUse.csv', function(csvData, path) { //hello CB hell
+//   parseData(csvData, path, function(data) {
+//     cleanData(data, function(data) {
+//       storeCerealData(function() {
+//         console.log('data stored');
+//       });
+//     });
+//   });
+//   console.log('imported, parsed, cleaned data');
+// });
 
 
 
