@@ -41,7 +41,7 @@ var renderNewCSVData = function(fileName, x, y, xLabel, yLabel, colorVar, toolTe
       current.yUnit = yUnit;
       current.xVar = x;
       current.yVar = y;
-      current.radiusVar = radiusVar;
+      current.rVar = radiusVar;
       current.colorVar = colorVar;
       current.toolText = toolText;
       
@@ -49,6 +49,14 @@ var renderNewCSVData = function(fileName, x, y, xLabel, yLabel, colorVar, toolTe
       current.data.forEach(function(dataPoint) { //ensure numeric
         dataPoint[current.xVar] = +dataPoint[current.xVar];
         dataPoint[current.yVar] = +dataPoint[current.yVar];
+        dataPoint[current.rVar] = +dataPoint[current.rVar];
+      });
+     
+      var minRadius = d3.min(current.data, function(d) {
+        return d[current.rVar];
+      });
+      var maxRadius = d3.max(current.data, function(d) {
+        return d[current.rVar];
       });
 
       //setup x
@@ -63,11 +71,17 @@ var renderNewCSVData = function(fileName, x, y, xLabel, yLabel, colorVar, toolTe
       var yMap = function(d) { return yScale(yValue(d));}; // data -> display
       var yAxis = d3.svg.axis().scale(yScale).orient("left");
 
+      var rValue = function(d) {return d[current.rVar];};
+      var rMap = function(d) {return rScale(rValue(d));};
+      var rScale = d3.scale.linear()
+                           .domain([minRadius, maxRadius])
+                           .range([2, 20]); 
+
       xScale.domain([d3.min(current.data, xValue)-1, d3.max(current.data, xValue)+1]);
       yScale.domain([d3.min(current.data, yValue)-1, d3.max(current.data, yValue)+1]);
 
       //setup colors
-      var cValue = function(d) { return current.colorVar;};
+      var cValue = function(d) { return d[current.colorVar];};
       var color = d3.scale.category10();
 
       var tooltip = d3.select('body')
@@ -102,7 +116,7 @@ var renderNewCSVData = function(fileName, x, y, xLabel, yLabel, colorVar, toolTe
           .data(current.data)
         .enter().append("circle")
           .attr("class", "dot")
-          .attr("r", function(d) {return d[current.radiusVar]* 0.25;})
+          .attr("r", rMap)
           .attr("cx", xMap)
           .attr("cy", yMap)
           .style("fill", function(d) { return color(cValue(d));})
@@ -122,5 +136,5 @@ var renderNewCSVData = function(fileName, x, y, xLabel, yLabel, colorVar, toolTe
   });
 };
 
-renderNewCSVData('Cereal.csv', 'Calories', 'Protein (g)', 'Calories', 'Protein (g)', 'Sodium', 'Cereal Name', 'Calories', 'kcal');
-// renderNewCSVData('waterUse.csv',"Total Population total population of area, in thousands","Public Supply population served by groundwater, in thousands", "Total Population total population of area, in thousands","Public Supply population served by groundwater, in thousands","Public Supply total population served, in thousands", "county_nm","Public Supply total population served, in thousands");
+// renderNewCSVData('Cereal.csv', 'Calories', 'Protein (g)', 'Calories', 'Protein (g)', 'Sodium', 'Cereal Name', 'Calories', 'kcal');
+renderNewCSVData('waterUse.csv',"Total Population total population of area, in thousands","Public Supply population served by groundwater, in thousands", "Total Population total population of area, in thousands","Public Supply population served by groundwater, in thousands","Public Supply total population served, in thousands", "county_nm","Public Supply total population served, in thousands");
