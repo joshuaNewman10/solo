@@ -73,7 +73,6 @@ $(document).ready(function() {
   $('body').on('click', '.dot', function(event) {
     event.preventDefault();
     var radius = $(this)[0]['r'].baseVal.value;
-    console.log(event);
     var x = 0;
     var y = 0;
     if( radius > 15 ) {
