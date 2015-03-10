@@ -45,21 +45,43 @@ app.get('Cereal', function(req, resp) {
 });
 
 app.get('County', function(req, resp) {
-
 });
 
 app.get('TimeCounty', function(req, resp) {
-
 });
+
 
 importData('Public/Cereal.csv', function() {
   console.log('logging datastore');
   console.log(dataStore);
 });
-importData('Public/waterUse.csv', function() {
-  console.log('logging datastore');
-  console.log(dataStore);
+// importData('Public/waterUse.csv', function() {
+//   console.log('logging datastore');
+//   console.log(dataStore);
+// });
+// importData('Public/waterUse.csv', function() {
+//   console.log('logging datastore');
+//   console.log(dataStore);
 });
-
+// importData('Public/1985.csv', function() {
+//   console.log('logging datastore');
+//   console.log(dataStore);
+// });
+// importData('Public/2010.csv', function() {
+//   console.log('logging datastore');
+//   console.log(dataStore);
+// });
+// importData('Public/LA.csv', function() {
+//   console.log('logging datastore');
+//   console.log(dataStore);
+// });
+// importData('Public/SansLA.csv', function() {
+//   console.log('logging datastore');
+//   console.log(dataStore);
+// });
+// importData('Public/waterUse.csv', function() {
+//   console.log('logging datastore');
+//   console.log(dataStore);
+// });
 
 
