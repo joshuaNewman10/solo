@@ -13,7 +13,25 @@ app.listen(8000);
 var dataStore = {
 };
 
-var parseData = function(data, path, cb) {
+
+var timeout = function (operation) { //clean row of data at timeout intervals
+    setTimeout(function () {
+        operation();
+        timeout(operation);
+    }, 10000);
+};
+
+var cleanData = function (data, cb) {
+  data.forEach(function(row, i) {
+    for(var prop in row) {
+      if( row[prop] === '-') {
+        console.log(row[prop], prop);
+      }
+    }
+  });
+};
+
+var parseData = function (data, path, cb) {
   var headings = data[0];
   var body = data.slice(1);
   var objData = body.map(function(entry) {
@@ -24,10 +42,11 @@ var parseData = function(data, path, cb) {
    return obj;
   });
   dataStore[path] = objData;
-  cb();
+  cb(dataStore[path]);
 };
 
-var importData = function(path, cb) {
+
+var importData = function (path, cb) {
   var csvData = [];
   csv
   .fromPath(path)
@@ -36,7 +55,7 @@ var importData = function(path, cb) {
   })
   .on('end', function() {
     console.log('done reading csv data');
-    parseData(csvData, path, cb);
+    cb(csvData, path);
   });
 };
 
@@ -53,37 +72,68 @@ app.get('TimeCounty', function(req, resp) {
 });
 
 
-importData('Public/Cereal.csv', function() {
-  console.log('logging datastore');
-  console.log(dataStore);
+importData('Public/Cereal.csv', function(csvData, path) { //hello CB hell
+  parseData(csvData, path, function(data) {
+    cleanData(data, function() {
+      console.log('cleaned data!');
+    });
+  });
+  console.log('imported, parsed, cleaned data');
 });
-importData('Public/waterUse.csv', function() {
-  console.log('logging datastore');
-  console.log(dataStore);
+importData('Public/waterUse.csv', function(csvData, path) { //hello CB hell
+  parseData(csvData, path, function(data) {
+    cleanData(data, function() {
+      console.log('cleaned data!');
+    });
+  });
+  console.log('imported, parsed, cleaned data');
 });
+
+
+
+
+
+
+
+
+
+
+
 // importData('Public/waterUse.csv', function() {
-//   console.log('logging datastore');
-//   console.log(dataStore);
+//   console.log('loaded datastore');
+//   cleanData(dataStore['Public/Cereal.csv'], function() {
+//       console.log('cleaned data');
+//     });
 // });
 // importData('Public/1985.csv', function() {
-//   console.log('logging datastore');
-//   console.log(dataStore);
+//   console.log('loaded datastore');
+//   cleanData(dataStore['Public/Cereal.csv'], function() {
+//       console.log('clened data');
+//     });
 // });
 // importData('Public/2010.csv', function() {
-//   console.log('logging datastore');
-//   console.log(dataStore);
+//   console.log('loaded datastore');
+//   cleanData(dataStore['Public/Cereal.csv'], function() {
+//       console.log()
+//     });
 // });
 // importData('Public/LA.csv', function() {
-//   console.log('logging datastore');
-//   console.log(dataStore);
+//   console.log('loaded datastore');
+//   cleanData(dataStore['Public/Cereal.csv'], function() {
+//       console.log()
+//     });
 // });
 // importData('Public/SansLA.csv', function() {
-//   console.log('logging datastore');
-//   console.log(dataStore);
+//   console.log('loaded datastore');
+//   cleanData(dataStore['Public/Cereal.csv'], function() {
+//       console.log();
+//     });
 // });
 // importData('Public/waterUse.csv', function() {
-//   console.log('logging datastore');
-//   console.log(dataStore);
+//   console.log('loaded datastore');
+//   cleanData(dataStore['Public/Cereal.csv'], function() {
+//       console.log();
+//     });
 // });
 
 
