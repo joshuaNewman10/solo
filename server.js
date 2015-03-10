@@ -36,15 +36,17 @@ var importData = function(path, cb) {
   })
   .on('end', function() {
     console.log('done reading csv data');
-    parseData(csvData,path, cb);
+    parseData(csvData, path, cb);
   });
 };
 
 
-app.get('Cereal', function(req, resp) {
+app.get('/Cereal', function(req, resp) {
+  resp.send(dataStore['Public/Cereal.csv']);
 });
 
-app.get('County', function(req, resp) {
+app.get('/waterUse', function(req, resp) {
+  resp.send(dataStore['Public/waterUse.csv']);
 });
 
 app.get('TimeCounty', function(req, resp) {
@@ -55,14 +57,14 @@ importData('Public/Cereal.csv', function() {
   console.log('logging datastore');
   console.log(dataStore);
 });
+importData('Public/waterUse.csv', function() {
+  console.log('logging datastore');
+  console.log(dataStore);
+});
 // importData('Public/waterUse.csv', function() {
 //   console.log('logging datastore');
 //   console.log(dataStore);
 // });
-// importData('Public/waterUse.csv', function() {
-//   console.log('logging datastore');
-//   console.log(dataStore);
-});
 // importData('Public/1985.csv', function() {
 //   console.log('logging datastore');
 //   console.log(dataStore);

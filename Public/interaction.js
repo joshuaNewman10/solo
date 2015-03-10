@@ -44,9 +44,15 @@ var showTimeControls = function() {
   $('.time').css('visibility', 'visible');
 };
 
-var requestData = function(dataId) { //request specific data
-  $.get('dataId', function(data) {
-    renderDbData(data, dataId);
+var requestData = function(url) { //request specific data
+  $.ajax({
+    url: url,
+    success: function(data) {
+      console.log('got back data!', data);
+    },
+    error: function(error) {
+      console.log(error);
+    }
   });
 };
 
@@ -79,5 +85,9 @@ $(document).ready(function() {
   });
 });
 
+requestData('Cereal');
+setTimeout(function() {
+  requestData('waterUse');
+}, 20000);
 
 
