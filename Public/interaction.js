@@ -1,17 +1,42 @@
+var desiredY = "Public Supply population served by groundwater, in thousands";
+
 var parseDataRequest = function(dataRequest) {
-  var dataOptions = ['Major Uses', 'Year', 'County', '1985', '2010'];
-  var choice = dataOptions[0];
-  console.log(dataRequest);
-  for(var i=0; i<dataOptions.length; i++) {
-    if( dataRequest.indexOf(dataOptions[i] ) > -1 ) {
-      choice = dataOptions[i];
+  var dataOptions = {
+    'Major Uses': 'LA', 
+    'Year':  'Year',
+    'County':  'County',
+    '1985': '1985',
+    '2010': '2010',
+    'Agriculture': 'Irrigation, Crop self-supplied surface-water withdrawals for crops, fresh, in Mgal/d',
+    'Commercial':'Public Supply deliveries to commercial, in Mgal/d',
+    'Industry': 'Public Supply deliveries to industrial, in Mgal/d',
+    'Per Capita': 'Public Supply per capita use, in gallons/person/day'
+  };
+  var choice = 'County';
+  var yVar = 'County';
+  var choices = Object.keys(dataOptions);
+  for(var i=0; i<choices.length; i++) {
+    if( dataRequest.indexOf(choices[i]) > -1 ) {
+      choice = choices[i];
+      yVar = dataOptions[choice];
     }
   }
+
   if( choice === 'Year' ) {
     render1985CSVData();
     showTimeControls();
   } else if (choice === '2010') {
     render2010CSVData();
+  } else if (choice === 'Agriculture') {
+    renderAgricultureData(yVar);
+  } else if (choice === 'Commericial') {
+    renderPerCapitaData(yVar);
+  } else if (choice === 'Industry') {
+    renderIndustryData(yVar);
+  } else if (choice === 'Per Capita') {
+    renderPerCapitaData(yVar);
+  }else {
+    renderCountyData(yVar);
   }
 };
 

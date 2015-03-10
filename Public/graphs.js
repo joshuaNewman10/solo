@@ -167,7 +167,28 @@ var render2010CSVData = function(fileName, x, y, xLabel, yLabel, colorVar, toolT
   setTimeout(function() {renderNewCSVData('2010.csv',"Total Population total population of area, in thousands","Public Supply population served by groundwater, in thousands", "Total Population total population of area, in thousands","Public Supply population served by groundwater, in thousands","Public Supply total population served, in thousands", "county_nm","Public Supply total population served, in thousands"); hideLoading(); }, 10000);
 };
 
+var renderAgricultureData = function(yVar) {
+  showLoading();
+  setTimeout(function() {renderNewCSVData('2010.csv',"Total Population total population of area, in thousands",yVar, "Total Population total population of area, in thousands",yVar,"Public Supply total population served, in thousands", "county_nm","Public Supply total population served, in thousands"); hideLoading(); }, 10000);
+};
 
-setTimeout(function() {renderNewCSVData('waterUse.csv',"Total Population total population of area, in thousands","Public Supply population served by groundwater, in thousands", "Total Population total population of area, in thousands","Public Supply population served by groundwater, in thousands","Public Supply total population served, in thousands", "county_nm","Public Supply total population served, in thousands"); hideLoading(); }, 5000);
-// setTimeout(function() {renderNewCSVData('SansLA.csv',"Total Population total population of area, in thousands","Public Supply population served by groundwater, in thousands", "Total Population total population of area, in thousands","Public Supply population served by groundwater, in thousands","Public Supply total population served, in thousands", "county_nm","Public Supply total population served, in thousands")}, 20000);
-// setTimeout(function() {renderNewCSVData('SansLA.csv',"Total Population total population of area, in thousands","Public Supply population served by groundwater, in thousands", "Total Population total population of area, in thousands","Public Supply population served by groundwater, in thousands","Public Supply total population served, in thousands", "county_nm","Public Supply total population served, in thousands")}, 20000);
+var renderCommercialData = function(yVar) {
+  showLoading();
+  setTimeout(function() {renderNewCSVData('2010.csv',"Total Population total population of area, in thousands",yVar, "Total Population total population of area, in thousands",yVar,"Public Supply total population served, in thousands", "county_nm","Public Supply total population served, in thousands"); hideLoading(); }, 10000);
+};
+
+var renderIndustryData = function(yVar) {
+  showLoading();
+  setTimeout(function() {renderNewCSVData('2010.csv',"Total Population total population of area, in thousands",yVar, "Total Population total population of area, in thousands",yVar,"Public Supply total population served, in thousands", "county_nm","Public Supply total population served, in thousands"); hideLoading(); }, 10000);
+};
+
+var renderPerCapitaData = function(yVar) {
+  showLoading();
+  setTimeout(function() {renderNewCSVData('2010.csv',"Total Population total population of area, in thousands",yVar, "Total Population total population of area, in thousands",yVar,"Public Supply total population served, in thousands", "county_nm","Public Supply total population served, in thousands"); hideLoading(); }, 10000);
+};
+
+var initialize = function() {
+  setTimeout(function() {renderNewCSVData('waterUse.csv',"Total Population total population of area, in thousands","Public Supply population served by groundwater, in thousands", "Total Population total population of area, in thousands","Public Supply population served by groundwater, in thousands","Public Supply total population served, in thousands", "county_nm","Public Supply total population served, in thousands"); hideLoading(); }, 5000);
+};
+
+initialize();
