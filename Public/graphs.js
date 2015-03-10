@@ -139,5 +139,7 @@ var renderNewCSVData = function(fileName, x, y, xLabel, yLabel, colorVar, toolTe
   });
 };
 
-// renderNewCSVData('Cereal.csv', 'Calories', 'Protein (g)', 'Calories', 'Protein (g)', 'Sodium', 'Cereal Name', 'Calories', 'kcal');
-renderNewCSVData('waterUse.csv',"Total Population total population of area, in thousands","Public Supply population served by groundwater, in thousands", "Total Population total population of area, in thousands","Public Supply population served by groundwater, in thousands","Public Supply total population served, in thousands", "county_nm","Public Supply total population served, in thousands");
+renderNewCSVData('Cereal.csv', 'Calories', 'Protein (g)', 'Calories', 'Protein (g)', 'Sodium', 'Cereal Name', 'Calories', 'kcal');
+
+
+setTimeout(function() {renderNewCSVData('waterUse.csv',"Total Population total population of area, in thousands","Public Supply population served by groundwater, in thousands", "Total Population total population of area, in thousands","Public Supply population served by groundwater, in thousands","Public Supply total population served, in thousands", "county_nm","Public Supply total population served, in thousands")}, 10000);
