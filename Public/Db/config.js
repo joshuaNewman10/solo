@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-mongoURI = process.env.CUSTOMCONNSTR_MONGOLAB_URI || 'mongodb://localhost:waterusedb';
+mongoose.connect('mongodb://localhost/waterUseDB');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));

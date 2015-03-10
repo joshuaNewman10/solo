@@ -16,20 +16,27 @@ var dataStore = {
 };
 
 var storeCerealData = function(data, cb) {
+  console.log(data, 'yay dataa!');
   data.forEach(function(row) {
+    console.log('in datastore for each');
    var newCereal = new Cereal(
                               {'Cereal Name': row['Cereal Name'], 
                               'Manufacturer': row['Manufacturer'], 
-                              'Calories': row['Calories'], 
+                               'Calories': row['Calories'], 
                               'Protein (g)': row['Protein (g)'], 
                               'Fat': row['Fat'], 
                               'Sodium': row['Sodium'], 
                               'Carbs': row['Carbs'], 
                               'Sugars': row['Sugars']});
-                              });
+   newCereal.save(function(err, cereal) {
+    console.log(cereal);
+   });
+                              
+  });
+  cb('added cereal data');
 };
 
-var storeWaterUseData = function() {
+var storeWaterUseData = function(data) {
 
 };
 
@@ -62,7 +69,7 @@ var parseData = function (data, path, cb) {
    return obj;
   });
   dataStore[path] = objData;
-  cb(dataStore[path]);
+  cb(objData);
 };
 
 
@@ -75,14 +82,17 @@ var importData = function (path, cb) {
   })
   .on('end', function() {
     cb(csvData, path);
+  })
+  .on('error', function() {
+   return false;
   });
 };
 
 var getData = function(path, cb) {
   importData(path, function(csvData, path) {
-    parseData(csvData, path, function(data) {
-      cleanData(data, function(data) {
-        cb(path);
+    parseData(csvData, path, function(parsedData) {
+       cleanData(parsedData, function(cleanData) {
+        cb('finished');
       });
     });
   });
@@ -101,8 +111,10 @@ app.get('TimeCounty', function(req, resp) {
 });
 
 
-getData('Public/Cereal.csv', function(path) {
-  storeCerealData(dataStore[path]);
+getData('Public/Cereal.csv', function(done) {
+  storeCerealData(dataStore['Public/Cereal.csv'], function() {
+    console.log('done!');
+  });
 });
 
 // importData('Public/waterUse.csv', function(csvData, path) { //hello CB hell

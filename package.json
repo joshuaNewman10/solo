@@ -10,6 +10,7 @@
     "bluebird": "^2.9.13",
     "express": "^4.12.2",
     "fast-csv": "^0.5.7",
+    "mongodb": "^1.4.34",
     "mongoose": "^3.8.24",
     "nodemon": "^1.3.7",
     "request": "^2.53.0",
