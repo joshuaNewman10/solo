@@ -199,8 +199,8 @@ var renderCSVData = function(fileName, x, y, xLabel, yLabel, colorVar, legendTex
 
 
       currentData.data.forEach(function(dataPoint) { //ensure numeric
-        dataPoint[currentData.xVar] = +dataPoint[currentData.xVar]
-        dataPoint[currentData.yVar] = +dataPoint[currentData.yVar]
+        dataPoint[currentData.xVar] = +dataPoint[currentData.xVar];
+        dataPoint[currentData.yVar] = +dataPoint[currentData.yVar];
       });
 
 
@@ -238,7 +238,7 @@ var renderCSVData = function(fileName, x, y, xLabel, yLabel, colorVar, legendTex
                    .duration(500)
                    .style('opacity', 0);
           });
-          updateLegend(csv);
+          // updateLegend(csv);
           updateAxes();
   });
 
@@ -248,6 +248,6 @@ var renderDbData = function() {
 
 };
 
-renderFakeData();
+// renderFakeData();
 // renderCSVData('Cereal.csv', 'Calories', 'Protein (g)', 'Calories', 'Protein (g)', 'Sodium', 'Food Name', 'g', 'kcal');
-renderCSVData('waterUseCSV.csv',"Total Population total population of area, in thousands","Public Supply population served by groundwater, in thousands", "Total Population total population of area, in thousands","Public Supply population served by groundwater, in thousands","Public Supply total population served, in thousands" );
+renderCSVData('waterUse.csv',"Total Population total population of area, in thousands","Public Supply population served by groundwater, in thousands", "Total Population total population of area, in thousands","Public Supply population served by groundwater, in thousands","Public Supply total population served, in thousands" );
