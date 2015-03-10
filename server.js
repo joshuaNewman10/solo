@@ -16,9 +16,7 @@ var dataStore = {
 };
 
 var storeCerealData = function(data, cb) {
-  console.log(data, 'yay dataa!');
   data.forEach(function(row) {
-    console.log('in datastore for each');
    var newCereal = new CerealModel(
                               {'Cereal Name': row['Cereal Name'], 
                               'Manufacturer': row['Manufacturer'], 
@@ -29,7 +27,6 @@ var storeCerealData = function(data, cb) {
                               'Carbs': row['Carbs'], 
                               'Sugars': row['Sugars']});
    newCereal.save(function(err, cereal) {
-    console.log(cereal);
    });
                               
   });

@@ -1,15 +1,53 @@
 * {
-  border: 2px solid black;
+  font-family: sans-serif;
+  font-stlye: italic;
+}
+
+h1 {
+  text-align: center;
+  color: lightBlue;
 }
 
 .chart {
   padding-top: 50px;
   margin-top: 50px;
+  /*border: 2px solid black;*/
 }
+
+.button-one {
+ background: blue; 
+ color: white;
+}
+
+.button-two {
+  background: blue; 
+  color: white;
+}
+
+.button-three {
+ background: blue; 
+ color: white;
+}
+
+.button-four {
+ background: blue; 
+ color: white;
+}
+
+.button-five {
+  background: blue; 
+  color: white;
+}
+
+.year {
+  background: lightblue; 
+  color: white;
+}
+
 
 .controls {
   display: absolute;
-
+  /*border: 2px solid black;*/
 }
 .controls li {
   display: inline-block;
@@ -30,12 +68,6 @@
   border: 2px solid black;
   border-radius: 8px;
   pointer-events: none;
-}
-
-
-
-.dot {
-
 }
 
 .Loading p {

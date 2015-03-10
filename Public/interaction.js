@@ -66,12 +66,12 @@ var hideLoading = function() {
 
 $(document).ready(function() {
   $('button').on('click', function() {
-    console.log('button clicked!');
+    event.preventDefault();
     parseDataRequest($(this).html());
   });
 
   $('body').on('click', '.dot', function(event) {
-    console.log('circle clicked!');
+    event.preventDefault();
     var radius = $(this)[0]['r'].baseVal.value;
     console.log(event);
     var x = 0;
