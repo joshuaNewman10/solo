@@ -19,7 +19,7 @@ var storeCerealData = function(data, cb) {
   console.log(data, 'yay dataa!');
   data.forEach(function(row) {
     console.log('in datastore for each');
-   var newCereal = new Cereal(
+   var newCereal = new CerealModel(
                               {'Cereal Name': row['Cereal Name'], 
                               'Manufacturer': row['Manufacturer'], 
                                'Calories': row['Calories'], 
@@ -36,8 +36,7 @@ var storeCerealData = function(data, cb) {
   cb('added cereal data');
 };
 
-var storeWaterUseData = function(data) {
-
+var storeWaterUseData = function(data, cb) { 
 };
 
 var timeout = function (operation) { //clean row of data at timeout intervals
@@ -116,56 +115,4 @@ getData('Public/Cereal.csv', function(done) {
     console.log('done!');
   });
 });
-
-// importData('Public/waterUse.csv', function(csvData, path) { //hello CB hell
-//   parseData(csvData, path, function(data) {
-//     cleanData(data, function(data) {
-//       storeCerealData(function() {
-//         console.log('data stored');
-//       });
-//     });
-//   });
-//   console.log('imported, parsed, cleaned data');
-// });
-
-
-
-
-// importData('Public/waterUse.csv', function() {
-//   console.log('loaded datastore');
-//   cleanData(dataStore['Public/Cereal.csv'], function() {
-//       console.log('cleaned data');
-//     });
-// });
-// importData('Public/1985.csv', function() {
-//   console.log('loaded datastore');
-//   cleanData(dataStore['Public/Cereal.csv'], function() {
-//       console.log('clened data');
-//     });
-// });
-// importData('Public/2010.csv', function() {
-//   console.log('loaded datastore');
-//   cleanData(dataStore['Public/Cereal.csv'], function() {
-//       console.log()
-//     });
-// });
-// importData('Public/LA.csv', function() {
-//   console.log('loaded datastore');
-//   cleanData(dataStore['Public/Cereal.csv'], function() {
-//       console.log()
-//     });
-// });
-// importData('Public/SansLA.csv', function() {
-//   console.log('loaded datastore');
-//   cleanData(dataStore['Public/Cereal.csv'], function() {
-//       console.log();
-//     });
-// });
-// importData('Public/waterUse.csv', function() {
-//   console.log('loaded datastore');
-//   cleanData(dataStore['Public/Cereal.csv'], function() {
-//       console.log();
-//     });
-// });
-
 
