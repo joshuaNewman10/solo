@@ -4,6 +4,8 @@ var mongoose = require('mongoose');
 var promise = require('bluebird');
 var csv = require('fast-csv');
 var db = require('./Public/Db/config.js');
+var CerealModel = require('./Public/Db/models/Cereal');
+var TimeCountyData = require('./Public/Db/models/TimeCountyUse');
 
 
 var app = express();
@@ -34,7 +36,7 @@ var storeCerealData = function(data, cb) { //small dataset test
   cb('added cereal data');
 };
 
-var storeWaterUseCountyData = function(data, cb) { 
+var storeWaterUseCountyData = function(data, cb) { //store dataset for quick access
   data.forEach(function(row) {
     var countyUse = new TimeCountyData({
       totalPop: row['Total Population total population of area, in thousands'],
@@ -121,6 +123,7 @@ app.get('TimeCounty', function(req, resp) {
 getData('Public/Cereal.csv', function(done) {
   storeCerealData(dataStore['Public/Cereal.csv'], function() {
     console.log('done!');
+    getServerData();
   });
 });
 
@@ -131,7 +134,9 @@ getData('Public/waterUse.csv', function(done) {
 });
 
 var getServerData = function() {
-
+  CerealModel.find({name: 'All-Bran'}, function(err, results) {
+    console.log('do we have any results?', results);
+  });
 };
 
 
