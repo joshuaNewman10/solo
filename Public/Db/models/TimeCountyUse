@@ -10,4 +10,4 @@ var TimeCountySchema = mongoose.Schema({
 
 var TimeCountyData = mongoose.model('TimeCounty', TimeCountySchema);
 
-module.exports(TimeCountyData);
+module.exports = TimeCountyData;

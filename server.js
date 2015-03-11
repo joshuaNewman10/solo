@@ -7,7 +7,7 @@ var db = require('./Public/Db/config.js');
 var CerealModel = require('./Public/Db/models/Cereal');
 var TimeCountyData = require('./Public/Db/models/TimeCountyUse');
 
-
+// 
 var app = express();
 app.use(express.static(__dirname + '/public'));
 
@@ -20,16 +20,16 @@ var dataStore = {
 var storeCerealData = function(data, cb) { //small dataset test
   data.forEach(function(row) {
    var newCereal = new CerealModel(
-    {'Cereal Name': row['Cereal Name'], 
-    'Manufacturer': row['Manufacturer'], 
-     'Calories': row['Calories'], 
-    'Protein (g)': row['Protein (g)'], 
-    'Fat': row['Fat'], 
-    'Sodium': row['Sodium'], 
-    'Carbs': row['Carbs'], 
-    'Sugars': row['Sugars']});
+    {'name': row['Cereal Name'], 
+    'manufacturer': row['Manufacturer'], 
+     'calories': row['Calories'], 
+    'protein (g)': row['Protein (g)'], 
+    'fat': row['Fat'], 
+    'sodium': row['Sodium'], 
+    'carbs': row['Carbs'], 
+    'sugars': row['Sugars']});
    newCereal.save(function(err, cereal) {
-    console.log(cereal);
+    // console.log(cereal);
    });
                               
   });
@@ -45,7 +45,7 @@ var storeWaterUseCountyData = function(data, cb) { //store dataset for quick acc
       year:  row['year']
     });
     countyUse.save(function(err, countyEntry) {
-      console.log(countyEntry);
+      // console.log(countyEntry);
     });
   });
 
@@ -134,7 +134,7 @@ getData('Public/waterUse.csv', function(done) {
 });
 
 var getServerData = function() {
-  CerealModel.find({name: 'All-Bran'}, function(err, results) {
+  TimeCountyData.find({year: '2000'}, function(err, results) {
     console.log('do we have any results?', results);
   });
 };

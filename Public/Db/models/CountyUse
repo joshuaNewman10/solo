@@ -9,4 +9,4 @@ var countySchema = mongoose.Schema({
 
 var CountyData = mongoose.model('County', countySchema);
 
-module.exports(CountyData);
+module.exports = CountyData;
